@@ -490,8 +490,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 3
   moveSpeed: 3
-  jumpForce: 30
+  jumpForce: 20
   runSpeed: 9
+  canJump: 0
+  jumpCount: 0
 --- !u!65 &1196092967
 BoxCollider:
   m_ObjectHideFlags: 0

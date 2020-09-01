@@ -12,6 +12,7 @@ public class CharacterMover : MonoBehaviour
     public float jumpForce = 10f;
     public float runSpeed = 3f;
     public bool canJump;
+    public int jumpCount;
 
     void Start()
     {
@@ -22,21 +23,24 @@ public class CharacterMover : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && canJump== true)
+        if (Input.GetButtonDown("Jump") && jumpCount < 2)
         {
             movement.y = jumpForce;
             canJump = false;
+            jumpCount++;
         }
 
         if (controller.isGrounded)
         {
             movement.y = 0;
             canJump = true;
+            jumpCount = 0;
         }
         else
         {
             movement.y -= gravity;
             canJump = false;
+            
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
