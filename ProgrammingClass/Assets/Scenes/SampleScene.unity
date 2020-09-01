@@ -491,6 +491,7 @@ MonoBehaviour:
   gravity: 3
   moveSpeed: 3
   jumpForce: 30
+  runSpeed: 9
 --- !u!65 &1196092967
 BoxCollider:
   m_ObjectHideFlags: 0

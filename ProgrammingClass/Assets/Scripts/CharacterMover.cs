@@ -8,8 +8,10 @@ public class CharacterMover : MonoBehaviour
     private CharacterController controller;
     private Vector3 movement;
     public float gravity = 9.81f;
-    public float moveSpeed = 3;
+    public float moveSpeed = 3f;
     public float jumpForce = 10f;
+    public float runSpeed = 3f;
+    public bool canJump;
 
     void Start()
     {
@@ -20,21 +22,32 @@ public class CharacterMover : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && canJump== true)
         {
             movement.y = jumpForce;
+            canJump = false;
         }
 
         if (controller.isGrounded)
         {
             movement.y = 0;
+            canJump = true;
         }
         else
         {
             movement.y -= gravity;
+            canJump = false;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            controller.Move(movement * runSpeed * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(movement * moveSpeed * Time.deltaTime);
+        }
         
-        controller.Move(movement *moveSpeed * Time.deltaTime);
+        
     }
 }
