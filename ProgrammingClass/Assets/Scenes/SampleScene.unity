@@ -491,7 +491,7 @@ MonoBehaviour:
   gravity: -9.81
   moveSpeed: 3
   rotateSpeed: 500
-  runSpeed: 9
+  runSpeed: 2
   jumpForce: 5
   jumpCount: 0
   jumpMax: 2

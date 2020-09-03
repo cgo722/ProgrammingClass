@@ -30,6 +30,10 @@ public class CharacterMover : MonoBehaviour
         var hInput = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
         transform.Rotate(0, hInput, 0);
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movement.Set(vInput * runSpeed, yVar, 0);
+        }
         
 
         yVar += gravity * Time.deltaTime;
