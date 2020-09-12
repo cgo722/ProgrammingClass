@@ -13,6 +13,7 @@ public class CharacterMover : MonoBehaviour
     public int jumpCount;
 
     public IntData jumpMax;
+    public IntData health;
 
     public FloatData moveSpeed;
     public FloatData runSpeed;
@@ -22,6 +23,7 @@ public class CharacterMover : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        health.value = 2;
     }
 
     void Update()
@@ -57,7 +59,10 @@ public class CharacterMover : MonoBehaviour
         movement = transform.TransformDirection(movement);
         controller.Move(movement * Time.deltaTime);
 
-
+        if(health.value == 0)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
