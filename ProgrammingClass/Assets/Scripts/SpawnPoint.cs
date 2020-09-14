@@ -6,10 +6,6 @@ public class SpawnPoint : MonoBehaviour
 {
     public Vector3Data vData;
 
-    private void OnEnable()
-    {
-        vData.value = new Vector3 (0, 2, 0);
-    }
     //set the vData from the position value
 
     private void OnTriggerEnter(Collider other)
