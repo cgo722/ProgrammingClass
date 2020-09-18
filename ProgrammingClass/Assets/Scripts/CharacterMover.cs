@@ -19,6 +19,9 @@ public class CharacterMover : MonoBehaviour
     public FloatData runSpeed;
 
     public Vector3Data currentSpawnPoint;
+    public Vector3Data playerLocation;
+
+    public GameObject bullet;
 
     void Start()
     {
@@ -28,6 +31,8 @@ public class CharacterMover : MonoBehaviour
 
     void Update()
     {
+
+        playerLocation.value = transform.position;
         
         var vInput = Input.GetAxis("Vertical") * moveSpeed.value;
         movement.Set(vInput, yVar, 0);
@@ -63,6 +68,7 @@ public class CharacterMover : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         
     }
 
