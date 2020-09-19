@@ -20,8 +20,8 @@ public class Instancing : MonoBehaviour
     }
     public void Instance()
     {
-        var location = new Vector3(data.value.x, data.value.y, data.value.z);
-        //var rotationDirection = new Vector3(0, 45, 0);
-        Instantiate(prefab, location, transform.rotation);
+        var location = data.value;
+        var rotationDirection = new Vector3(0, 45, 0);
+        Instantiate(prefab, location, Quaternion.Euler(rotationDirection));
     }
 }

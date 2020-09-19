@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6223392577296291706, guid: 47d0309b7f2e0da4691ba463ad582c0c, type: 3}
-  data: {fileID: 11400000, guid: d18a8d6e86260b9409f012f72b55e1ac, type: 2}
+  data: {fileID: 11400000, guid: e92c1a0625d1c4448964b50d7dd1a615, type: 2}
 --- !u!4 &1154581020
 Transform:
   m_ObjectHideFlags: 0
@@ -839,7 +839,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154581018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.069999695, z: 0.84000003}
+  m_LocalPosition: {x: 1.27, y: 0.069999695, z: -0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1196092970}
