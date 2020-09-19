@@ -14,16 +14,10 @@ public class ApplyForce : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
-        var forceDirection = new Vector3(force, 0, 0);
+        var forceDirection = Vector3.right;
         //forceDirection needs to be based on Player rotation (hint SO)
-        rBody.AddForce(forceDirection);
+        rBody.AddForce(forceDirection * force);
     }
 
-    //need a firing method
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //need a firing method- its in instancing
 }

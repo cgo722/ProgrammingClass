@@ -11,7 +11,7 @@ public class Instancing : MonoBehaviour
 
     public void Update()
     {
-        transform.position = data.value;
+        data.value = transform.position;
         
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -20,8 +20,8 @@ public class Instancing : MonoBehaviour
     }
     public void Instance()
     {
-        var location = Vector3.zero;
-        var rotationDirection = new Vector3(0, 45, 0);
-        Instantiate(prefab, location, Quaternion.Euler(rotationDirection));
+        var location = new Vector3(data.value.x, data.value.y, data.value.z);
+        //var rotationDirection = new Vector3(0, 45, 0);
+        Instantiate(prefab, location, transform.rotation);
     }
 }
