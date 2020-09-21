@@ -22,6 +22,6 @@ public class Instancing : MonoBehaviour
     {
         var location = data.value;
         var rotationDirection = new Vector3(0, 45, 0);
-        Instantiate(prefab, location, Quaternion.Euler(rotationDirection));
+        Instantiate(prefab, location, transform.rotation);
     }
 }
