@@ -8,7 +8,6 @@ public class LookAt : MonoBehaviour
 
     private void Update()
     {
-
         Transform transform1;
         (transform1 = transform).LookAt(lookObj);
         var transformRotation = transform1.eulerAngles;

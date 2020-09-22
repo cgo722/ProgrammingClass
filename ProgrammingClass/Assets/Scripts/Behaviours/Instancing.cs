@@ -7,7 +7,6 @@ public class Instancing : MonoBehaviour
 {
     public GameObject prefab;
     public Vector3Data data;
-    //make a method to call the instance method
 
     public void Update()
     {
