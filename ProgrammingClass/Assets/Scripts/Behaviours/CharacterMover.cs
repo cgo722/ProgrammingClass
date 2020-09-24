@@ -44,8 +44,20 @@ public class CharacterMover : MonoBehaviour
         {
             movement.Set(vInput * runSpeed.value, yVar, 0);
         }
-        
 
+        movement = transform.TransformDirection(movement);
+        controller.Move(movement * Time.deltaTime);
+
+        if(health.value == 0)
+        {
+            Destroy(gameObject);
+        }
+
+        
+    }
+
+    private void FixedUpdate()
+    {
         yVar += gravity * Time.deltaTime;
 
         if (controller.isGrounded && movement.y < 0)
@@ -60,19 +72,7 @@ public class CharacterMover : MonoBehaviour
             jumpCount++;
             Debug.Log("Jump");
         }
-
-        movement = transform.TransformDirection(movement);
-        controller.Move(movement * Time.deltaTime);
-
-        if(health.value == 0)
-        {
-            Destroy(gameObject);
-        }
-
-        
     }
-
-
 
     private void OnEnable()
     {

@@ -20,7 +20,5 @@ public class MoveLocator : MonoBehaviour
         {
             pointObj.position = hit.point;
         }
-
-        
     }
 }
