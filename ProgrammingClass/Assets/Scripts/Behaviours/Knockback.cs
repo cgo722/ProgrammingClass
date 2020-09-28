@@ -17,7 +17,7 @@ public class Knockback : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject)
+        if (collision.other.gameObject)
         {
             rb.AddForce(transform.position * power.value * Time.deltaTime,ForceMode.Impulse);
         }

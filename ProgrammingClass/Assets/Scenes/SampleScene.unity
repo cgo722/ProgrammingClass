@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 856374245}
   - component: {fileID: 856374244}
   - component: {fileID: 856374243}
+  - component: {fileID: 856374248}
   - component: {fileID: 856374242}
   m_Layer: 0
   m_Name: Enemy
@@ -636,11 +637,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 856374241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f07b2df0faf2d840a655ef16115b47f, type: 3}
+  m_Script: {fileID: 11500000, guid: ee6d7d886ad96174883b0d67f8ef106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 11400000, guid: 4d5a8d3d5dad37e4a8b15bd045f164f8, type: 2}
-  waitTime: 2
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4d5a8d3d5dad37e4a8b15bd045f164f8, type: 2}
+        m_TargetAssemblyTypeName: IntData, Assembly-CSharp
+        m_MethodName: UpdateValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &856374243
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -717,6 +731,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &856374248
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856374241}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,8 +889,6 @@ GameObject:
   - component: {fileID: 1196092967}
   - component: {fileID: 1196092966}
   - component: {fileID: 1196092972}
-  - component: {fileID: 1196092973}
-  - component: {fileID: 1196092971}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -969,19 +997,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1196092971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196092965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1108048e3006b44a4f2a4bc8cdd777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power: {fileID: 11400000, guid: 8051ab8ca605fa447a323d170c14857e, type: 2}
 --- !u!143 &1196092972
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1000,22 +1015,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1196092973
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196092965}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1528645269
 GameObject:
   m_ObjectHideFlags: 0
