@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b44eac79a8410b4db86ce4e3cee0f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vData: {fileID: 11400000, guid: 1f853c873344a6743b91132556161aa5, type: 2}
 --- !u!136 &633193435
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1027,6 +1026,7 @@ GameObject:
   - component: {fileID: 1196092967}
   - component: {fileID: 1196092966}
   - component: {fileID: 1196092972}
+  - component: {fileID: 1196092971}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1135,6 +1135,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196092971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196092965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab420a251419a941832af0211277544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerEnterEventAfter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 499220539}
+        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
+        m_MethodName: 
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  delayTime: 0
 --- !u!143 &1196092972
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1393,7 +1421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b44eac79a8410b4db86ce4e3cee0f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vData: {fileID: 11400000, guid: 1f853c873344a6743b91132556161aa5, type: 2}
 --- !u!136 &2123855251
 CapsuleCollider:
   m_ObjectHideFlags: 0
