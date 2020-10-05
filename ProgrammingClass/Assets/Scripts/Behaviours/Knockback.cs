@@ -3,23 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody))]
 public class Knockback : MonoBehaviour
 {
 
-    public FloatData power;
-    private Rigidbody rb;
+    public float pushPower;
+    public float playerKB = 10f;
+
+    public Vector3 move;
+
+    private CharacterController controller;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void FixedUpdate()
     {
-        if (collision.other.gameObject)
+        move = transform.TransformDirection(move);
+        controller.Move(move * playerKB * Time.deltaTime);
+    }
+
+    private IEnumerator KnockBack (ControllerColliderHit hit)
+    {
+        var i = 2f;
+        move = hit.collider.attachedRigidbody.velocity * (i * playerKB);
+        while (i > 0)
         {
-            rb.AddForce(transform.position * power.value * Time.deltaTime,ForceMode.Impulse);
+            yield return new WaitForFixedUpdate();
+            i -= 0.1f;
         }
+        move = Vector3.zero;
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var body = hit.collider.attachedRigidbody;
+
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        body.velocity = pushDir * pushPower;
     }
 }
