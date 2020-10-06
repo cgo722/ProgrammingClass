@@ -1151,7 +1151,6 @@ GameObject:
   - component: {fileID: 1196092966}
   - component: {fileID: 1196092972}
   - component: {fileID: 1196092971}
-  - component: {fileID: 1196092973}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1171,18 +1170,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8aa73c231587347abb5728996f1362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -9.81
   rotateSpeed: 500
+  gravity: -9.81
   jumpForce: 5
-  yVar: 0
-  jumpCount: 0
-  jumpMax: {fileID: 11400000, guid: 9d043d508329ddc4693d38472106b14e, type: 2}
-  health: {fileID: 11400000, guid: 4d5a8d3d5dad37e4a8b15bd045f164f8, type: 2}
-  moveSpeed: {fileID: 11400000, guid: 2360850a0b2cae944afa3e89a0618084, type: 2}
-  runSpeed: {fileID: 11400000, guid: 692983ce6e51f8a47a084ecc0bf5104f, type: 2}
-  currentSpawnPoint: {fileID: 11400000, guid: 1f853c873344a6743b91132556161aa5, type: 2}
-  playerLocation: {fileID: 11400000, guid: d18a8d6e86260b9409f012f72b55e1ac, type: 2}
-  bullet: {fileID: 6223392577296291706, guid: 47d0309b7f2e0da4691ba463ad582c0c, type: 3}
+  normalSpeed: {fileID: 11400000, guid: 2360850a0b2cae944afa3e89a0618084, type: 2}
+  fastSpeed: {fileID: 11400000, guid: 692983ce6e51f8a47a084ecc0bf5104f, type: 2}
+  playerJumpCount: {fileID: 11400000, guid: 9d043d508329ddc4693d38472106b14e, type: 2}
+  pushPower: 10
 --- !u!65 &1196092967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1269,25 +1263,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1196092965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab420a251419a941832af0211277544, type: 3}
+  m_Script: {fileID: 11500000, guid: cd1108048e3006b44a4f2a4bc8cdd777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerEnterEventAfter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 499220539}
-        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
-        m_MethodName: 
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 100
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  delayTime: 0
+  pushPower: 10
+  playerKB: 10
+  move: {x: 0, y: 0, z: 0}
 --- !u!143 &1196092972
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1306,21 +1287,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1196092973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196092965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1108048e3006b44a4f2a4bc8cdd777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushPower: 2
-  playerKB: 10
-  move: {x: 0, y: 0, z: 0}
 --- !u!1 &1528645269
 GameObject:
   m_ObjectHideFlags: 0

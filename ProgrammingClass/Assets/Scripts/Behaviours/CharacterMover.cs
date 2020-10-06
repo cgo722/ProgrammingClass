@@ -1,80 +1,106 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-
 public class CharacterMover : MonoBehaviour
 {
-
     private CharacterController controller;
     private Vector3 movement;
-    public float gravity = -9.81f, rotateSpeed = 30f, jumpForce = 10f, yVar;
-    public int jumpCount;
 
-    public IntData jumpMax;
-    public IntData health;
+    public float rotateSpeed = 30f, gravity = -9.81f, jumpForce = 10f;
+    private float yVar;
 
-    public FloatData moveSpeed;
-    public FloatData runSpeed;
+    public FloatData normalSpeed, fastSpeed;
+    private FloatData moveSpeed;
+    private bool canMove = true;
 
-    public Vector3Data currentSpawnPoint;
-    public Vector3Data playerLocation;
+    public IntData playerJumpCount;
+    private int jumpCount;
 
-    public GameObject bullet;
-
-    void Start()
+    private void Start()
     {
+        moveSpeed = normalSpeed;
         controller = GetComponent<CharacterController>();
-        health.value = 2;
+        StartCoroutine(Move());
     }
 
-    void Update()
+    private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
+    private IEnumerator Move()
     {
-
-        playerLocation.value = transform.position;
-        
-        var vInput = Input.GetAxis("Vertical") * moveSpeed.value;
-        movement.Set(vInput, yVar, 0);
-
-        var hInput = Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime;
-        transform.Rotate(0, hInput, 0);
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        canMove = true;
+        while (canMove)
         {
-            movement.Set(vInput * runSpeed.value, yVar, 0);
+            yield return wffu;
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                moveSpeed = fastSpeed;
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                moveSpeed = normalSpeed;
+            }
+
+            var vInput = Input.GetAxis("Vertical") * moveSpeed.value;
+            //var hInput = Input.GetAxis("Horizontal")*moveSpeed.value;
+            movement.Set(vInput, yVar, 0);
+
+            var hInput = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
+            transform.Rotate(0, hInput, 0);
+
+            yVar += gravity * Time.deltaTime;
+
+            if (controller.isGrounded && movement.y < 0)
+            {
+                yVar = -1f;
+                jumpCount = 0;
+            }
+
+            if (Input.GetButtonDown("Jump") && jumpCount < playerJumpCount.value)
+            {
+                yVar = jumpForce;
+                jumpCount++;
+            }
+
+            movement = transform.TransformDirection(movement);
+            controller.Move((movement) * Time.deltaTime);
         }
-
-        movement = transform.TransformDirection(movement);
-        controller.Move(movement * Time.deltaTime);
-
-        if(health.value == 0)
-        {
-            Destroy(gameObject);
-        }
-
-        
     }
-
-    private void FixedUpdate()
+    private IEnumerator KnockBack(ControllerColliderHit hit)
     {
-        yVar += gravity * Time.deltaTime;
-
-        if (controller.isGrounded && movement.y < 0)
+        canMove = false;
+        var i = 2f;
+        movement = hit.collider.attachedRigidbody.velocity * i;
+        while (i > 0)
         {
-            yVar = -1f;
-            jumpCount = 0;
+            yield return new WaitForFixedUpdate();
+            i -= 0.1f;
+            controller.Move((movement) * Time.deltaTime);
         }
-
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax.value)
-        {
-            yVar = jumpForce;
-            jumpCount++;
-            Debug.Log("Jump");
-        }
+        movement = Vector3.zero;
+        StartCoroutine(Move());
     }
 
-    private void OnEnable()
+    public float pushPower = 10.0f;
+    private CharacterController characterController;
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        transform.position = currentSpawnPoint.value;
-    }
+        var body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
 
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        var forces = pushDir * pushPower;
+        //body.AddForce(forces);
+        body.velocity = forces;
+        //StartCoroutine(KnockBack(hit));
+    }
 }
