@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class AIBehavior : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -34,4 +35,6 @@ public class AIBehavior : MonoBehaviour
         canNavigate = false;
         StartCoroutine(Navigate());
     }
+
+    
 }
