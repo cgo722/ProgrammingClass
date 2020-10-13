@@ -24,7 +24,7 @@ public class Knockback : MonoBehaviour
         controller.Move(move * playerKB * Time.deltaTime);
     }
 
-    private IEnumerator KnockBack (ControllerColliderHit hit)
+private IEnumerator KnockBack (ControllerColliderHit hit)
     {
         var i = 2f;
         move = hit.collider.attachedRigidbody.velocity * (i * playerKB);
