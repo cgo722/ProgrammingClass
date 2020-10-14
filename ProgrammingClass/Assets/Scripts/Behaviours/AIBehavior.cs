@@ -26,15 +26,15 @@ public class AIBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (patrol == true)
-        {
-            if (agent.pathPending || !(agent.remainingDistance < 0.5f)) return;
-            agent.destination = patrolPoints[i].position;
-            i = (i + 1) % patrolPoints.Count;
-        }
+
+        if (agent.pathPending || !(agent.remainingDistance < 0.5f)) return;
+                agent.destination = patrolPoints[i].position;
+                i = (i + 1) % patrolPoints.Count;
+
+
     }
 
-    private IEnumerator Navigate()
+    private IEnumerator Chase()
     {
         noPursuit = true;
         while (noPursuit == false)
@@ -52,8 +52,12 @@ public class AIBehavior : MonoBehaviour
         {
             patrol = false;
             noPursuit = false;
-            StartCoroutine(Navigate());
+            StartCoroutine(Chase());
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        patrol = true;
+    }
 }
