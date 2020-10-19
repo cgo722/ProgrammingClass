@@ -23,7 +23,6 @@ public class CharacterMover : MonoBehaviour
         controller = GetComponent<CharacterController>();
         StartCoroutine(Move());
     }
-
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
     private IEnumerator Move()
     {
@@ -64,6 +63,7 @@ public class CharacterMover : MonoBehaviour
 
             movement = transform.TransformDirection(movement);
             controller.Move((movement) * Time.deltaTime);
+
         }
     }
     private IEnumerator KnockBack(ControllerColliderHit hit, Rigidbody body)
