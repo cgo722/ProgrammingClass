@@ -15,7 +15,7 @@ public class CharacterMover : MonoBehaviour
     private bool canMove = true;
 
     public IntData playerJumpCount;
-    private int jumpCount;
+    int jumpCount;
 
     private void Start()
     {
@@ -24,12 +24,13 @@ public class CharacterMover : MonoBehaviour
         StartCoroutine(Move());
     }
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
+    private readonly WaitForEndOfFrame wfef = new WaitForEndOfFrame();
     private IEnumerator Move()
     {
         canMove = true;
         while (canMove)
         {
-            yield return wffu;
+     
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 moveSpeed = fastSpeed;
@@ -63,7 +64,7 @@ public class CharacterMover : MonoBehaviour
 
             movement = transform.TransformDirection(movement);
             controller.Move((movement) * Time.deltaTime);
-
+            yield return wffu;
         }
     }
     private IEnumerator KnockBack(ControllerColliderHit hit, Rigidbody body)
