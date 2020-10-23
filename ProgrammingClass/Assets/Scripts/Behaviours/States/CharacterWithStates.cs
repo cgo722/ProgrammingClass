@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
-public class CharacterWithStates : MonoBehaviour
+public class CharacterWithStates : StateMachine
 {
     private CharacterController controller;
-    public CharacterStateMachineData characterStates;
+    protected State states;
 
     private Vector3 movement;
     public float moveSpeed = 3;
@@ -16,25 +16,24 @@ public class CharacterWithStates : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void SetState()
     {
         var newInput = Input.GetAxis("Vertical") * moveSpeed;
 
-        switch (characterStates.value)
+        switch (states)
         {
-            case CharacterStateMachineData.characterStates.StandardWalk:
+            case states.Start:
+                print("I just be standing");
+                break;
+            case states.State.StandardWalk:
                 movement.Set(newInput, gravity, 0);
                 print("Walk");
                 break;
-            case CharacterStateMachineData.characterStates.NoGravityWalk:
-                movement.Set(newInput, 0, 0);
-                print("Walk");
-                break;
-            case CharacterStateMachineData.characterStates.WallCrawl:
+            case states.State.WallCrawl:
                 movement.Set(0, newInput, 0);
                 print("Crawl");
                 break;
-            case CharacterStateMachineData.characterStates.KnockBack:
+            case states.State.Jump:
                 print("KnockBack");
                 break;
         }
