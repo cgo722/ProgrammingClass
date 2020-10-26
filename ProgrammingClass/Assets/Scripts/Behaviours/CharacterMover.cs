@@ -23,6 +23,15 @@ public class CharacterMover : MonoBehaviour
         controller = GetComponent<CharacterController>();
         StartCoroutine(Move());
     }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump") && jumpCount < playerJumpCount.value)
+        {
+            yVar = jumpForce;
+            jumpCount++;
+        }
+    }
     private readonly WaitForFixedUpdate wffu = new WaitForFixedUpdate();
     private readonly WaitForEndOfFrame wfef = new WaitForEndOfFrame();
     private IEnumerator Move()
@@ -31,16 +40,14 @@ public class CharacterMover : MonoBehaviour
         while (canMove)
         {
      
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveSpeed = fastSpeed;
             }
-
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            else
             {
                 moveSpeed = normalSpeed;
             }
-
             var vInput = Input.GetAxis("Vertical") * moveSpeed.value;
 
             movement.Set(vInput, yVar, 0);
@@ -56,11 +63,7 @@ public class CharacterMover : MonoBehaviour
                 jumpCount = 0;
             }
 
-            if (Input.GetButtonDown("Jump") && jumpCount < playerJumpCount.value)
-            {
-                yVar = jumpForce;
-                jumpCount++;
-            }
+
 
             movement = transform.TransformDirection(movement);
             controller.Move((movement) * Time.deltaTime);

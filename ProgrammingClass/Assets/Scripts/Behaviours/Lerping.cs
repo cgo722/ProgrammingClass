@@ -8,10 +8,33 @@ public class Lerping : MonoBehaviour
     public Vector3 vOne, vTwo;
     public float value;
 
-    void Update()
+    public int waitTime;
+    private WaitForSeconds wfs;
+
+    private void Update()
     {
-        var direction = Vector3.Lerp(vOne, vTwo, value);
-        value += 0.1f * Time.deltaTime;
-        transform.position = direction;
+        Move();
+
     }
+
+    private void Move()
+    {
+        var direction1 = Vector3.Lerp(vOne, vTwo, value);
+        var direction2 = Vector3.Lerp(vTwo, vOne, value);
+        if (value <= 1)
+        {
+            value += 0.3f * Time.deltaTime;
+            transform.position = direction1;
+        }
+        if (value >= 1)
+        {
+            value = -0.3f * Time.deltaTime;
+            transform.position = direction2;
+        }
+
+    }
+
+   
+
+
 }
