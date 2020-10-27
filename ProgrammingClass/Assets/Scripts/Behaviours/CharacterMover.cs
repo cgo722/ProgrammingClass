@@ -70,12 +70,12 @@ public class CharacterMover : MonoBehaviour
             yield return wffu;
         }
     }
-    private IEnumerator KnockBack(ControllerColliderHit hit, Rigidbody body)
+    private IEnumerator KnockBackViaPlayer(ControllerColliderHit hit, Rigidbody body)
     {
         canMove = false;
         var i = 2f;
 
-        movement = -hit.moveDirection;
+        movement = -hit.moveDirection * pushPower;
         movement.y = -1;
         while (i > 0)
         {
@@ -90,7 +90,6 @@ public class CharacterMover : MonoBehaviour
         movement = Vector3.zero;
         StartCoroutine(Move());
     }
-
     public float pushPower = 10.0f;
     private CharacterController characterController;
 
@@ -107,6 +106,7 @@ public class CharacterMover : MonoBehaviour
             return;
         }
 
-        StartCoroutine(KnockBack(hit, body));
+        StartCoroutine(KnockBackViaPlayer(hit, body));
     }
+
 }
