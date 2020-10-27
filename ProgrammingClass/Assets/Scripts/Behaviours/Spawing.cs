@@ -17,7 +17,8 @@ public class Spawing : MonoBehaviour
 
     void SpawnCollectables()
     {
+        GameObject myCollectable;
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), .5f, Random.Range(-spawnRangeZ, spawnRangeZ));
-        Instantiate(collectable, spawnPos, collectable.transform.rotation);
+        myCollectable = Instantiate(collectable, spawnPos, collectable.transform.rotation) as GameObject;
     }
 }
