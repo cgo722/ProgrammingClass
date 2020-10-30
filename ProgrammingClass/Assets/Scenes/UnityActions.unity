@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944135728}
   m_LocalRotation: {x: -0, y: -0.9999794, z: -0, w: 0.006421997}
-  m_LocalPosition: {x: 4.91, y: -1.61, z: 4.72}
+  m_LocalPosition: {x: 4.91, y: -2.13, z: 4.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -278,7 +278,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   awakeEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4d5a8d3d5dad37e4a8b15bd045f164f8, type: 2}
+        m_TargetAssemblyTypeName: IntData, Assembly-CSharp
+        m_MethodName: StartValue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   startEvent:
     m_PersistentCalls:
       m_Calls:
@@ -408,7 +420,6 @@ GameObject:
   - component: {fileID: 1443447601}
   - component: {fileID: 1443447600}
   - component: {fileID: 1443447599}
-  - component: {fileID: 1443447605}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -434,6 +445,7 @@ MonoBehaviour:
   normalSpeed: {fileID: 11400000, guid: 2360850a0b2cae944afa3e89a0618084, type: 2}
   fastSpeed: {fileID: 11400000, guid: 692983ce6e51f8a47a084ecc0bf5104f, type: 2}
   playerJumpCount: {fileID: 11400000, guid: 9d043d508329ddc4693d38472106b14e, type: 2}
+  healthData: {fileID: 11400000, guid: 4d5a8d3d5dad37e4a8b15bd045f164f8, type: 2}
 --- !u!143 &1443447600
 CharacterController:
   m_ObjectHideFlags: 0
@@ -528,23 +540,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1443447605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443447598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ecc578f3eb76a147b54df19f4304791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameAction: {fileID: 0}
-  handlerEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  holdTime: 3
 --- !u!1 &1708923452
 GameObject:
   m_ObjectHideFlags: 0

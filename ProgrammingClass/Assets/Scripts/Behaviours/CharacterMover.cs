@@ -8,7 +8,7 @@ public class CharacterMover : MonoBehaviour
 {
     public float rotateSpeed = 120f, gravity = -9.81f, jumpForce = 10f;
     public FloatData normalSpeed, fastSpeed;
-    public IntData playerJumpCount;
+    public IntData playerJumpCount, healthData;
 
     protected CharacterController controller;
     protected Vector3 movement;
@@ -48,6 +48,7 @@ public class CharacterMover : MonoBehaviour
         while (canMove)
         {
             OnMove();
+            Health();
             yield return wffu;
         }
     }
@@ -89,5 +90,13 @@ public class CharacterMover : MonoBehaviour
 
         movement = transform.TransformDirection(movement);
         controller.Move((movement) * Time.deltaTime);
+    }
+
+    private void Health()
+    {
+        if (healthData.value <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
