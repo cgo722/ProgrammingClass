@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class GameActionHandler : MonoBehaviour
+public class HandlerGameActions : MonoBehaviour
 {
     public GameAction gameAction;
     public UnityEvent handlerEvent;

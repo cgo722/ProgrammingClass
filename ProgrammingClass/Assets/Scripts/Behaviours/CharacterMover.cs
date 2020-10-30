@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharacterBehaviour : MonoBehaviour
+public class CharacterMover : MonoBehaviour
 {
     public float rotateSpeed = 120f, gravity = -9.81f, jumpForce = 10f;
     public FloatData normalSpeed, fastSpeed;
@@ -34,11 +34,6 @@ public class CharacterBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (controller.isGrounded && movement.y < 0)
-        {
-            yVar = -1f;
-            jumpCount = 0;
-        }
 
         if (Input.GetButtonDown("Jump") && jumpCount < playerJumpCount.value)
         {
@@ -85,6 +80,12 @@ public class CharacterBehaviour : MonoBehaviour
         OnHorizontal();
 
         yVar += gravity * Time.deltaTime;
+
+        if (controller.isGrounded && movement.y < 0)
+        {
+            yVar = -1f;
+            jumpCount = 0;
+        }
 
         movement = transform.TransformDirection(movement);
         controller.Move((movement) * Time.deltaTime);

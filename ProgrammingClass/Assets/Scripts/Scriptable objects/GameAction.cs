@@ -5,8 +5,7 @@ using UnityEngine.Events;
 public class GameAction : ScriptableObject
 {
     public UnityAction action;
-
-    void Raise()
+    public void Raise()
     {
         action?.Invoke();
     }
