@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class HandlerGameActions : MonoBehaviour
+public class GameActionHandler : MonoBehaviour
 {
     public GameAction gameAction;
     public UnityEvent handlerEvent;
-    // Start is called before the first frame update
-    void Start()
+    public float holdTime = 3f;
+    private void Start()
     {
-        //GameAction.action;
+        gameAction.action += ActionHandler;
     }
 
+    private void ActionHandler()
+    {
+        Invoke(nameof(OnActionHandler), holdTime);
+    }
+
+    private void OnActionHandler()
+    {
+        handlerEvent.Invoke();
+    }
 }
