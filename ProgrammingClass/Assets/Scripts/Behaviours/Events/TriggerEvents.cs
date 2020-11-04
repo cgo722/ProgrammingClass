@@ -1,24 +1,36 @@
-﻿using UnityEngine;
+﻿
+using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class TriggerEvents : MonoBehaviour
 {
-    public UnityEvent triggerEnterEvent;
-    public UnityEvent triggerStayEvent;
-    public UnityEvent triggerExitEvent;
-    public float delayTime = 0.1f;
+    public UnityEvent triggerEnterEvent, triggerStayEvent, triggerExitEvent;
+    public float delayTime = 0.01f;
+    private WaitForSeconds waitObj;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
+        waitObj = new WaitForSeconds(delayTime);
+    }
+
+    private IEnumerator OnTriggerEnter(Collider other)
+    {
+        yield return waitObj;
         triggerEnterEvent.Invoke();
     }
-    private void OnTriggerStay(Collider other)
+
+    private IEnumerator OnTriggerStay(Collider other)
     {
+        yield return waitObj;
         triggerStayEvent.Invoke();
     }
-    private void OnTriggerExit(Collider other)
+
+
+    private IEnumerator OnTriggerExit(Collider other)
     {
+        yield return waitObj;
         triggerExitEvent.Invoke();
     }
-
 }
