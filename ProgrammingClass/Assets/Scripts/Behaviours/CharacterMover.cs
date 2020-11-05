@@ -56,9 +56,8 @@ public class CharacterMover : MonoBehaviour
     protected virtual void OnInput()
     {
         hInput = Input.GetAxis("Horizontal") * Time.deltaTime * rotateSpeed;
-        transform.Rotate(0, hInput, 0);
         vInput = Input.GetAxis("Vertical") * moveSpeed.value;
-        movement.Set(0, yVar, vInput);
+        movement.Set(hInput, yVar, vInput);
     }
 
     private void OnMove()

@@ -402,8 +402,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882426894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: -3.46, z: 6.87}
-  m_LocalScale: {x: 3.25091, y: 3.25091, z: 3.25091}
+  m_LocalPosition: {x: 0.69, y: 4.41, z: 6.87}
+  m_LocalScale: {x: 5.5457273, y: 5.5457273, z: 5.5457273}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -426,8 +426,8 @@ MonoBehaviour:
   triggerStayEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411551436}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+      - m_Target: {fileID: 1411551433}
+        m_TargetAssemblyTypeName: CharacterWithLookAt, Assembly-CSharp
         m_MethodName: LookAt
         m_Mode: 2
         m_Arguments:
@@ -440,19 +440,7 @@ MonoBehaviour:
         m_CallState: 2
   triggerExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1411551436}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-        m_MethodName: LookAt
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   delayTime: 0.01
 --- !u!1 &1411551430
 GameObject:
@@ -465,9 +453,9 @@ GameObject:
   - component: {fileID: 1411551436}
   - component: {fileID: 1411551435}
   - component: {fileID: 1411551434}
-  - component: {fileID: 1411551433}
   - component: {fileID: 1411551432}
   - component: {fileID: 1411551431}
+  - component: {fileID: 1411551433}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -512,20 +500,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &1411551433
-CapsuleCollider:
+--- !u!114 &1411551433
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411551430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3793095c8b1fa984e8ccefc882f7590b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1411551434
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -583,7 +569,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411551430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 5.54, z: 6.79}
+  m_LocalPosition: {x: -7.04, y: 5.54, z: 6.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -601,6 +587,8 @@ GameObject:
   - component: {fileID: 1691406124}
   - component: {fileID: 1691406123}
   - component: {fileID: 1691406122}
+  - component: {fileID: 1691406126}
+  - component: {fileID: 1691406127}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -678,9 +666,56 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691406121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: -4.06, z: 6.485034}
-  m_LocalScale: {x: 26.122, y: 1, z: 10.953}
+  m_LocalPosition: {x: -6.29, y: -8.27, z: 6.485034}
+  m_LocalScale: {x: 7.4230995, y: 3.8034458, z: 14.667163}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1691406126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691406121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1691406127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691406121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6d7d886ad96174883b0d67f8ef106b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1411551433}
+        m_TargetAssemblyTypeName: CharacterWithLookAt, Assembly-CSharp
+        m_MethodName: LookAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1691406125}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  triggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  delayTime: 0.01
