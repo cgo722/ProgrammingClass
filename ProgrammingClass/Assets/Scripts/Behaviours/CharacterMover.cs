@@ -17,9 +17,17 @@ public class CharacterMover : MonoBehaviour
     protected float vInput, hInput;
     protected FloatData moveSpeed;
 
+
+    public Animator anim;
+
     protected float yVar;
     private int jumpCount;
 
+
+    private void Start()
+    {
+
+    }
     private void OnEnable()
     {
         moveSpeed = normalSpeed;
@@ -39,7 +47,20 @@ public class CharacterMover : MonoBehaviour
         {
             yVar = jumpForce;
             jumpCount++;
+
         }
+
+        if(Input.GetButtonDown("Jump") && controller.isGrounded)
+        {
+            anim.SetBool("JumpBool", true);
+        }
+        else { anim.SetBool("JumpBool", false); }
+
+        if (movement.x == 0 && movement.z == 0)
+        {
+            anim.SetBool("WalkBool", false);
+        }
+        else { anim.SetBool("WalkBool", true); }
     }
 
     protected IEnumerator Move()
@@ -81,6 +102,8 @@ public class CharacterMover : MonoBehaviour
             yVar = -1f;
             jumpCount = 0;
         }
+
+
 
         movement = transform.TransformDirection(movement);
         controller.Move((movement) * Time.deltaTime);
