@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharacterMover : MonoBehaviour
+public class CharacterMoverWithAnim : MonoBehaviour
 {
     public float rotateSpeed = 120f, gravity = -9.81f, jumpForce = 10f;
     public FloatData normalSpeed, fastSpeed;
@@ -18,6 +18,7 @@ public class CharacterMover : MonoBehaviour
     protected FloatData moveSpeed;
 
 
+    public Animator anim;
 
     protected float yVar;
     private int jumpCount;
@@ -48,6 +49,18 @@ public class CharacterMover : MonoBehaviour
             jumpCount++;
 
         }
+
+        if(Input.GetButtonDown("Jump") && controller.isGrounded)
+        {
+            anim.SetBool("JumpBool", true);
+        }
+        else { anim.SetBool("JumpBool", false); }
+
+        if (movement.x == 0 && movement.z == 0)
+        {
+            anim.SetBool("WalkBool", false);
+        }
+        else { anim.SetBool("WalkBool", true); }
     }
 
     protected IEnumerator Move()
